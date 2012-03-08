@@ -1,32 +1,9 @@
 ;; ======================================================================
 ;; EMACS Customization file
-;     ftp://ftp.cis.ohio-state.edu/pub/emacs-lisp/
-;     ftp://ftp.uni-mainz.de/pub/gnu/elisp-archive/
-;     ftp://gatekeeper.dec.com/pub/GNU/elisp-archive/
-;     ftp://nic.funet.fi/pub/gnu/emacs/elisp-archive/
-;     ftp://sunsite.cnlab-switch.ch/mirror/elisp-archive/
-;     ftp://src.doc.ic.ac.uk/public/Mirrors/ftp.cis.ohio-state.edu/pub/emacs-lisp/
-;; /anonymous@ftp.cis.ohio-state.edu:/pub/emacs-lisp
-;;
-;;
+;     
 ;; This file contains all my current emacs customizations.
 ;; For the list of emacs lisp files available try this URL:
 ;;       http://www.anc.ed.ac.uk/~stephen/emacs/ell.html
-;;
-;; for more goodies and examples goto this URL:
-;;       http://www.cs.washington.edu/homes/voelker/ntemacs/contrib/
-;; 
-;; for printable (postscript) versions of the emacs manuals goto this URL:
-;;       ftp://ftp.cs.ubc.ca/pub/archive/gnu/manuals_ps
-;;
-;; you can make emacs "understand" URLs and email addresses by using
-;; goto-address.el.  Try it now by typing M-x goto-address.  The above
-;; URL should then highlight.
-;;
-;; Permanent redirecting link to emacs FAQ and resources:
-;; http://poboxes.com/jari.aalto/emacs-elisp.html
-;;
-;; send mail to Frank for more information: fcaico@ufosys.com
 ;;
 ;; ======================================================================
 
@@ -39,14 +16,14 @@
 ;; SET THIS FIRST!! EVERYTHING ELSE DEPENDS ON THIS VARIABLE!
 
 ;; add private lisp directory to load-path
-(add-to-list 'load-path "c:/program files/emacs-21.1/site-lisp/eshell")
-(add-to-list 'load-path "c:/program files/emacs-21.1/site-lisp/pcomplete")
-(add-to-list 'load-path "c:/program files/emacs-21.1/site-lisp/jde/lisp")
-(add-to-list 'load-path "c:/program files/emacs-21.1/site-lisp/semantic")
-(add-to-list 'load-path "c:/program files/emacs-21.1/site-lisp/speedbar")
-(add-to-list 'load-path "c:/program files/emacs-21.1/site-lisp/elib")
-(add-to-list 'load-path "c:/program files/emacs-21.1/site-lisp/eieio")
-(add-to-list 'load-path "~/emacs")
+(add-to-list 'load-path "~/Emacs")
+(add-to-list 'load-path "~/Emacs/eshell")
+(add-to-list 'load-path "~/Emacs/pcomplete")
+(add-to-list 'load-path "~/Emacs/jde/lisp")
+(add-to-list 'load-path "~/Emacs/semantic")
+(add-to-list 'load-path "~/Emacs/speedbar")
+(add-to-list 'load-path "~/Emacs/elib")
+(add-to-list 'load-path "~/Emacs/eieio")
 
 ;; =================================================================
 ;; Emacs auto customize section
@@ -54,8 +31,6 @@
 
 ;; Start custom section. emacs will  add to this section when
 ;; you use the customize stuff on the help menu
-
-
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
@@ -69,7 +44,6 @@
  '(eshell-modules-list (quote (eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-script eshell-smart eshell-term eshell-unix)))
  '(font-lock-maximum-decoration (quote ((t . t))))
  '(global-font-lock-mode t nil (font-lock))
- '(hscroll-global-mode t nil (hscroll))
  '(inhibit-startup-message t)
  '(jde-bug-jdk-directory "d:/java/jdk1.3.1/")
  '(jde-bug-vm-includes-jpda-p t)
@@ -129,14 +103,11 @@
 (require 'fc-buffers)
 (require 'fc-frames)
 (require 'fc-misc)
-(require 'fc-VSS)
+;;(require 'fc-VSS)
 
 ;; turn on delete-selection-mode. This makes the selection behave
 ;; in a more windows-like manner.
 (delete-selection-mode)
-
-;; Shut off annoying sound
-(set-message-beep 'silent)
 
 ;; Set the icon and frame titles %f file name, %b buffer name
 (setq frame-title-format "%b") 
@@ -386,7 +357,7 @@
 ;; Stuff to make backup files always go to C:/BACKUPS 
 ;;======================================================================
 (require 'backup-dir)
-(setq bkup-backup-directory-info  '((t "/backups/"   ok-create )))
+(setq bkup-backup-directory-info  '((t "~/Backups/"   ok-create )))
 
 ;;======================================================================
 ;; Autorevert Makes sure what we are editing doesnt get out of sync 
@@ -626,3 +597,13 @@
 ;;     ))
 ;;   ))
 
+
+
+
+(defun my-bell-function ()
+  (unless (memq this-command
+    	'(isearch-abort abort-recursive-edit exit-minibuffer
+              keyboard-quit mwheel-scroll down up next-line previous-line
+              backward-char forward-char))
+    (ding)))
+(setq ring-bell-function 'my-bell-function)
