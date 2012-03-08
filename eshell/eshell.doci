@@ -1,0 +1,99 @@
+\input texinfo @c -*-texinfo-*-
+
+@setchapternewpage odd
+@settitle The Emacs Shell
+@setfilename eshell.info
+
+@ifinfo
+This is the first edition of the @cite{Eshell Manual}.
+
+@dircategory Packages
+@direntry
+* Eshell: (eshell.info).	An Emacs command shell.
+@end direntry
+
+This document describes how to use and program the Emacs Command Shell,
+or ``Eshell''.  No guarantee is made as the usability of this software.
+Use it at your own risk.  Neither is this documentation guaranteed to be
+accurate or sufficient.
+
+Copyright (C) 1999, 2000 Free Software Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+@ignore
+Permission is granted to process this file through TeX and print the
+results, provided the printed document carries a copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual).
+
+@end ignore
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided also that the
+sections entitled ``The GNU Manifesto'', ``Distribution'' and ``GNU
+General Public License'' are included exactly as in the original, and
+provided that the entire resulting derived work is distributed under the
+terms of a permission notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that the sections entitled ``The GNU Manifesto'',
+``Distribution'' and ``GNU General Public License'' may be included in a
+translation approved by the Free Software Foundation instead of in the
+original English.
+@end ifinfo
+
+@smallbook
+
+@iftex
+@kbdinputstyle code
+
+@shorttitlepage Eshell Manual
+@end iftex
+@titlepage
+@sp 6
+@center @titlefont{Eshell Manual}
+@sp 4
+@center First Edition
+@sp 5
+@center John Wiegley
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 1999, 2000 Free Software Foundation, Inc.
+@sp 2
+First Edition @*
+February 2000
+@sp 1
+Published by John Wiegley @*
+http://www.emacs.org/~johnw/eshell.html
+@sp 1
+Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided also that the
+sections entitled ``The GNU Manifesto'', ``Distribution'' and ``GNU
+General Public License'' are included exactly as in the original, and
+provided that the entire resulting derived work is distributed under the
+terms of a permission notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that the sections entitled ``The GNU Manifesto'',
+``Distribution'' and ``GNU General Public License'' may be included in a
+translation approved by the Free Software Foundation instead of in the
+original English.
+@end titlepage
+
+@ifinfo
+@node Top
+@top The Emacs Shell: Eshell
+
+@end ifinfo
+
+%%
+
+@bye

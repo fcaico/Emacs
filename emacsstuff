@@ -1,0 +1,36 @@
+================================================================================
+
+I use the following sections in .emacs to have a minibuffer in bottom middle. The most important thing is (minibuffer . nil) in
+default-frame-alist and the minibuffer-frame-alist for customizations. 
+ 
+(setq default-frame-alist
+    ;;lots of params + the one you need ...
+    (minibuffer . nil)
+    ;;lots more
+    ,@default-frame-alist))
+ 
+;;set up minibuffer position
+(setq rg-fr-mini-top (setq rg-fr-mini-left  210)
+ 
+ 
+;;special minibuffer frame at bottom
+(setq minibuffer-frame-alist
+  `((font . ,rg-fr-font-big) ;;very noticable
+    (height . 1)
+    (top . (- (x-display-pixel-height) 48))
+    (left . 210)
+    ;(auto-raise . nil) ;; I don't like this at all...
+    (foreground-color . "gold") ;;very noticable
+    (title . "SPECIAL:MiniBuffer")))
+ 
+;;raise minibuffer-frame if hidden (this is extremely helpful on win32 (global-set-key [(meta i)] '(lambda()(interactive)(raise-frame
+default-minibuffer-frame)))
+ 
+================================================================================
+
+(add-to-list 'default-frame-alist
+	'(minibuffer . nil))
+
+================================================================================
+
+

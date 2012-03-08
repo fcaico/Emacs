@@ -1,0 +1,50 @@
+This is semantic.info, produced by makeinfo version 4.0 from
+semantic.texi.
+
+START-INFO-DIR-ENTRY
+* semantic: (semantic).       Semantic Parsing for Emacs
+END-INFO-DIR-ENTRY
+
+
+Indirect:
+semantic.info-1: 175
+semantic.info-2: 49091
+
+Tag Table:
+(Indirect)
+Node: Top175
+Node: Install1578
+Node: Lexing2102
+Node: Bovinating5515
+Node: BNF conversion6865
+Node: Settings8767
+Node: Rules20821
+Node: Optional Lambda Expression23769
+Node: Examples26469
+Node: Compiling27215
+Node: Debugging28618
+Node: Utilities30646
+Node: Token Queries31234
+Node: Nonterminal Streams35866
+Node: Nonterminal Completion42582
+Node: Override Methods44297
+Node: Token->Text45094
+Node: Token Details49091
+Node: Local Context52747
+Node: Making New Methods57645
+Node: Parser Hooks57769
+Node: Current Context62096
+Node: Blocks62799
+Node: Local Variables64555
+Node: Derived Context66037
+Node: Suggestions67513
+Node: Tools67969
+Node: speedbar68569
+Node: imenu69148
+Node: semanticdb71821
+Node: senator77597
+Node: document83330
+Node: miscellaneous84989
+Node: Index85518
+
+End Tag Table

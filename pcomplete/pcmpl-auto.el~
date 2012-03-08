@@ -1,0 +1,2 @@
+;;; DO NOT MODIFY THIS FILE
+(if (featurep 'pcmpl-auto) (error "Already loaded"))

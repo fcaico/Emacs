@@ -1,0 +1,66 @@
+;;; -*- Mode: Emacs-Lisp -*-
+;;;
+;;; ssafe-menu.el -- Menu for SourceSafe in Emacs
+;;;
+
+;;; Commentary:
+
+;;; This file defines a menu of functions to manipulate files that are
+;;; maintained under the SourceSafe version control system.  The
+functions
+;;; are defined in the Emacs source-safe package available from Stan
+Lanning
+;;; <lanning@pureatria.com>. SourceSafe is available from Microsoft,
+and runs 
+;;; under Windows NT and Win95.  There are versions of SourceSafe that
+run on 
+;;; Macs and various flavors of Unix.
+;;; More info about SourceSafe can be obtained at the web page
+;;;     http://www.microsoft.com/ssafe/
+
+;;; Author:
+;;;	Jake Colman <jcolman@jnc.com>
+
+;;; Installation/Usage:
+;;; Byte compile this file and load it together with the source-safe
+package
+;;; inside of your .emacs file.
+;;;
+;;; For example, you might want to put the following in your
+;;; .emacs file:
+;;;
+;;; (load "ssafe-menu")
+;;; (setq ss-program "d:\\win32apps\\vss\\win32\\SS.exe")
+;;; (setq ss-project-dirs 
+;;;       '(("^D:\\\\PROJECTS\\\\PROJ1\\\\" . "$/Proj1/")
+;;;         ("^D:\\\\PROJECTS\\\\PROJ2\\\\" . "$/Proj2/")
+;;;         ))
+;;; (setq ss-tmp-dir "d:\\temp")
+;;; (setq ss-confirm-updates t)
+
+(require 'source-safe)
+
+(defvar ss-menu-map (make-sparse-keymap "SourceSafe"))
+
+(define-key-after menu-bar-tools-menu [ss]
+  (cons "SourceSafe" ss-menu-map) 'vc)
+
+(define-key ss-menu-map [ss-help]       '("Help" . ss-help))
+(define-key ss-menu-map [ss-history]    '("Show History" .
+ss-history))
+(define-key ss-menu-map [ss-diff]       '("Show Differences" .
+ss-diff))
+(define-key ss-menu-map [ss-status]     '("Show Status" . ss-status))
+(define-key ss-menu-map [separator2]    '("--"))
+(define-key ss-menu-map [ss-merge]      '("Merge" . ss-merge))
+(define-key ss-menu-map [ss-unbranch]   '("Undo Branch" .
+ss-unbranch))
+(define-key ss-menu-map [ss-branch]     '("Branch" . ss-branch))
+(define-key ss-menu-map [separator1]    '("--"))
+(define-key ss-menu-map [ss-uncheckout] '("Undo Check Out" .
+ss-uncheckout))
+(define-key ss-menu-map [ss-checkin]    '("Check In" . ss-update))
+(define-key ss-menu-map [ss-checkout]   '("Check Out" . ss-checkout))
+(define-key ss-menu-map [ss-get]        '("Get" . ss-get))
+
+;;; end of file ssafe-menu.el

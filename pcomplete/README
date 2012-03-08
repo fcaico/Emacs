@@ -1,0 +1,18 @@
+pcomplete provides a facility for using programmatic completion in
+Emacs.	It is especially useful for utilities like shells and command
+interpretors, but can in fact be used anywhere within Emacs.
+
+The simple way to begin using pcomplete is with comint-derived modes.
+To do this, add the following to that mode's mode-hook.	 shell-mode is
+given as an example:
+
+  (load "pcmpl-auto")
+  (add-hook 'shell-mode-hook 'pcomplete-shell-setup)
+
+Now just type `M-x shell' and press TAB.  Enter a command name, like
+"cvs", and press TAB again.  You should see a context-sensitive list
+of completions for the first argument (which for cvs is the command
+argument).
+
+			John Wiegley <johnw@gnu.org>
+			http://www.emacs.org/~johnw/emacs.html
