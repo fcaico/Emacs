@@ -5,6 +5,13 @@
 ;; For the list of emacs lisp files available try this URL:
 ;;       http://www.anc.ed.ac.uk/~stephen/emacs/ell.html
 ;;
+;; to compile an entire emacs directory structure use
+;;   C-u 0 M-x byte-recompile-directory
+;;
+;; And thereafter (once each has been compiled once), just use 
+;; the same command without the C-u 0 (aka C-0, BTW). That will 
+;; byte-compile only those source files that are more recent than 
+;; their byte-compiled counterparts
 ;; ======================================================================
 
 ;; =================================================================
@@ -150,10 +157,11 @@
 ;;
 ;; visit http://www.wyrdrune.com/gnuserv.htm for help with this mode.
 ;;======================================================================
-(require 'gnuserv)
-;;(setenv "GNUSERV_SHOW_EMACS" "1")
-(gnuserv-start)
-(setq gnuserv-frame (selected-frame))
+;; (require 'gnuserv)
+;; ;;(setenv "GNUSERV_SHOW_EMACS" "1")
+;; (gnuserv-start)
+;; (setq gnuserv-frame (selected-frame))
+(server-start)
 
 ;;======================================================================
 ;; This maps edit keys to standard Windows keystokes. It requires the
@@ -237,7 +245,6 @@
 					'("\\.vbs"    . visual-basic-mode)
 					'("\\.js"     . java-mode)
 					'("\\.inc"    . visual-basic-mode)
-					'("\\.cs$" . csharp-mode)
 					) auto-mode-alist))
 
 ;; =================================================================
