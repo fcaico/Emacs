@@ -1,7 +1,7 @@
 ;; ======================================================================
 ;; EMACS Customization file
 ;     
-;; This file contains all my current emacs customizations.
+;; This file contains all my current Mac OSX emacs customizations.
 ;; For the list of emacs lisp files available try this URL:
 ;;       http://www.anc.ed.ac.uk/~stephen/emacs/ell.html
 ;;
