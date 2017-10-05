@@ -33,7 +33,7 @@
 (add-to-list 'load-path "~/Emacs/eieio")
 
 (add-to-list 'load-path "~/Emacs/color-theme-6.6.0 4")
-(add-to-list 'load-path "~/Emacs/color-theme-6.6.0 4/color-theme.el/themes")
+(add-to-list 'load-path "~/Emacs/color-theme-6.6.0 4/themes")
 (require 'color-theme)
 
 (eval-after-load "color-theme"
@@ -95,11 +95,6 @@
  '(truncate-lines t)
  '(version-control t))
 
-(color-theme-solarized-dark)
-(set-cursor-color "red")
-
-;; '(custom-enabled-themes (quote (wombat)))
-
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -110,6 +105,7 @@
  '(font-lock-keyword-face ((((class color) (background light)) (:foreground "Blue"))))
  '(html-tag-face ((((class color) (background light)) (:bold t :foreground "DarkGreen"))))
  '(vhdl-font-lock-attribute-face ((((class color) (background light)) (:foreground "SlateBlue")))))
+
 
 ;; =================================================================
 ;; Frame settings
@@ -130,6 +126,9 @@
 ;; Uncomment this to make a minibuffer only frame!
 ;;(add-to-list 'default-frame-alist
 ;;	'(minibuffer . nil))
+
+(color-theme-solarized-dark)
+(set-cursor-color "red")
 
 
 ;; =================================================================
@@ -274,7 +273,10 @@
 					'("\\.vbs"    . visual-basic-mode)
 					'("\\.js"     . java-mode)
 					'("\\.inc"    . visual-basic-mode)
+					'("\\.zsh$"    . sh-mode)
+					'("\\zshrc"    . sh-mode)
 					) auto-mode-alist))
+
 
 ;; =================================================================
 ;; HTML Helper Mode
@@ -461,8 +463,6 @@
 
 ;;(define-key dired-mode-map "O" 'dired-find-file-other-frame)
 
-
-
 ;; =================================================================
 ;; I HATE IT When you're scrolling with the wheel and accidentally
 ;; insert a copy region.  Yuck - you dont even know you did it!!!!
@@ -643,3 +643,6 @@
               backward-char forward-char))
     (ding)))
 (setq ring-bell-function 'my-bell-function)
+
+;; '(custom-enabled-themes (quote (wombat)))
+
