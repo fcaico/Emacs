@@ -32,6 +32,15 @@
 (add-to-list 'load-path "~/Emacs/elib")
 (add-to-list 'load-path "~/Emacs/eieio")
 
+(add-to-list 'load-path "~/Emacs/color-theme-6.6.0 4")
+(add-to-list 'load-path "~/Emacs/color-theme-6.6.0 4/color-theme.el/themes")
+(require 'color-theme)
+
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-hober)))
+
 ;; =================================================================
 ;; Emacs auto customize section
 ;; =================================================================
@@ -40,21 +49,36 @@
 ;; you use the customize stuff on the help menu
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
  '(auto-show-mode nil)
  '(c-comment-only-line-offset (quote (0 . 0)))
- '(c-hanging-braces-alist (quote ((brace-list-open before after) (brace-entry-open before after) (substatement-open before after) (block-close . c-snug-do-while) (extern-lang-open after) (inexpr-class-open before after) (inexpr-class-close before after))))
+ '(c-hanging-braces-alist
+   (quote
+	((brace-list-open before after)
+	 (brace-entry-open before after)
+	 (substatement-open before after)
+	 (block-close . c-snug-do-while)
+	 (extern-lang-open after)
+	 (inexpr-class-open before after)
+	 (inexpr-class-close before after))))
  '(c-indent-comments-syntactically-p t)
  '(c-tab-always-indent nil)
+ '(cursor-type (quote bar))
+ '(cursor-color red)
  '(delete-old-versions t)
- '(eshell-modules-list (quote (eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-script eshell-smart eshell-term eshell-unix)))
+ '(eshell-modules-list
+   (quote
+	(eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-script eshell-smart eshell-term eshell-unix)))
  '(font-lock-maximum-decoration (quote ((t . t))))
  '(global-font-lock-mode t nil (font-lock))
- '(inhibit-startup-message t)
+ '(inhibit-startup-screen t)
  '(jde-bug-jdk-directory "d:/java/jdk1.3.1/")
  '(jde-bug-vm-includes-jpda-p t)
-;; '(html-helper-mode-uses-bold-italic t nil (html-helper-mode))
  '(jde-compile-option-directory "d:\\java\\dev\\classes")
  '(jde-compile-option-sourcepath (quote ("d:\\java\\dev\\source")))
  '(jde-db-debugger (quote ("JDEbug" "" . "Executable")))
@@ -69,14 +93,19 @@
  '(tab-width 4)
  '(transient-mark-mode t)
  '(truncate-lines t)
- '(version-control t)
- '(cursor-type 'bar)
- '(cursor-color red))
+ '(version-control t))
+
+(color-theme-solarized-dark)
 (set-cursor-color "red")
 
+;; '(custom-enabled-themes (quote (wombat)))
+
+
 (custom-set-faces
-  ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(font-lock-builtin-face ((((class color) (background light)) (:foreground "DarkBlue"))))
  '(font-lock-keyword-face ((((class color) (background light)) (:foreground "Blue"))))
  '(html-tag-face ((((class color) (background light)) (:bold t :foreground "DarkGreen"))))
