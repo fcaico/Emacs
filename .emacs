@@ -2,7 +2,7 @@
 ;; EMACS Customization file
 ;     
 ;; This file contains all my current emacs customizations.
-;; For the list of emacs lisp files available try this URL:
+;shar; For the list of emacs lisp files available try this URL:
 ;;       http://www.anc.ed.ac.uk/~stephen/emacs/ell.html
 ;;
 ;; to compile an entire emacs directory structure use
@@ -17,31 +17,34 @@
 ;; =================================================================
 ;; Begin Customizations
 ;; =================================================================
-;; Stuff that has to be first according to notes
-;; =================================================================
 
 ;; SET THIS FIRST!! EVERYTHING ELSE DEPENDS ON THIS VARIABLE!
 
 ;; add private lisp directory to load-path
 (add-to-list 'load-path "~/Emacs")
-(add-to-list 'load-path "~/Emacs/eshell")
-(add-to-list 'load-path "~/Emacs/pcomplete")
-(add-to-list 'load-path "~/Emacs/jde/lisp")
-(add-to-list 'load-path "~/Emacs/semantic")
-(add-to-list 'load-path "~/Emacs/speedbar")
-(add-to-list 'load-path "~/Emacs/elib")
-(add-to-list 'load-path "~/Emacs/eieio")
-
 (add-to-list 'load-path "~/Emacs/color-theme-6.6.0 4")
 (add-to-list 'load-path "~/Emacs/color-theme-6.6.0 4/themes")
-(require 'color-theme)
-
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-hober)))
 
 ;; =================================================================
+;; Setup for MELP package manager
+;; see https://melpa.org for more information 
+;; =================================================================
+
+(require 'package)
+
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
+  (add-to-list 'package-archives (cons "melpa" url) t))
+
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
+(package-initialize)
+
+
+; =================================================================
 ;; Emacs auto customize section
 ;; =================================================================
 
@@ -68,8 +71,8 @@
 	 (inexpr-class-close before after))))
  '(c-indent-comments-syntactically-p t)
  '(c-tab-always-indent nil)
- '(cursor-type (quote bar))
  '(cursor-color red)
+ '(cursor-type (quote bar))
  '(delete-old-versions t)
  '(eshell-modules-list
    (quote
@@ -77,13 +80,6 @@
  '(font-lock-maximum-decoration (quote ((t . t))))
  '(global-font-lock-mode t nil (font-lock))
  '(inhibit-startup-screen t)
- '(jde-bug-jdk-directory "d:/java/jdk1.3.1/")
- '(jde-bug-vm-includes-jpda-p t)
- '(jde-compile-option-directory "d:\\java\\dev\\classes")
- '(jde-compile-option-sourcepath (quote ("d:\\java\\dev\\source")))
- '(jde-db-debugger (quote ("JDEbug" "" . "Executable")))
- '(jde-db-source-directories (quote ("d:\\java\\dev\\source")))
- '(jde-global-classpath (quote ("d:\\java\\dev\\source" "d:\\java\\dev\\classes")))
  '(next-line-add-newlines nil)
  '(show-paren-delay 0.5)
  '(show-paren-mode t nil (paren))
@@ -118,17 +114,23 @@
 (setq default-frame-alist
       '((width . 80) 
 		(height . 45)
-		(font . "-outline-consolas-normal-r-normal-normal-12-120-96-96-c-*-iso8859-15")))
-;;		(font . "-outline-Andale Mono-normal-r-normal-normal-12-90-96-96-c-*-iso8859-15")))
-;;        (font . "-*-Courier New-normal-r-*-*-12-82-96-96-c-*-iso8859-1")))
-;;(setq initial-frame-alist '((top . 0) (left . 0)))
+		(font . "-outline-consolas-normal-r-normal-normal-14-120-96-96-c-*-iso8859-15")))
 
 ;; Uncomment this to make a minibuffer only frame!
 ;;(add-to-list 'default-frame-alist
 ;;	'(minibuffer . nil))
 
-(color-theme-solarized-dark)
-(set-cursor-color "red")
+; =================================================================
+;; Emacs auto customize section
+;; =================================================================
+(require 'color-theme)
+
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-solarized-dark)
+     (set-cursor-color "red")))
+
 
 
 ;; =================================================================
@@ -272,6 +274,7 @@
 					'("\\.cs$" . csharp-mode)
 					'("\\.vbs"    . visual-basic-mode)
 					'("\\.js"     . java-mode)
+					'("\\.java"   . java-mode)
 					'("\\.inc"    . visual-basic-mode)
 					'("\\.zsh$"    . sh-mode)
 					'("\\zshrc"    . sh-mode)
@@ -482,7 +485,7 @@
 ;; 
 ;; =================================================================
 ;;(setq printer-name "LPT2:")                      ; non-standard port
-(setq printer-name "//HALEY/4M-BackHall")  ; network printer
+;;(setq printer-name "//HALEY/4M-BackHall")  ; network printer
 
 ;; =================================================================
 ;; Java mode stuff
@@ -505,39 +508,8 @@
 
 
 ;; =================================================================
-;; JDE Mode stuff
+;; shell stuff
 ;; =================================================================
-
-;; Set the debug option to enable a backtrace when a
-;; problem occurs.
-(setq debug-on-error nil)
-
-
-;; Defer loading the JDE until I open a Java file
-(setq defer-loading-jde t)
-
-(if defer-loading-jde
-	(progn
-	  (autoload 'jde-mode "jde" "JDE mode." t)
-	  (setq auto-mode-alist
- 			(append
- 			 '(("\\.java\\'" . jde-mode))
- 			 auto-mode-alist)))
-  (require 'jde))
-
-(defun my-jde-mode-hook ()
-   (setq c-basic-offset 4)
-   (c-set-offset 'substatement-open 0) ; this is the one you care about
-   (c-set-offset 'statement-case-open '-)
-   (c-set-offset 'case-label '+)
-   (setq tab-width 4
-  		;; make sure spaces are used instead of tabs
-  		indent-tabs-mode nil)
-   (message "my-java-mode-hook function executed"))
-
-(add-hook 'jde-mode-hook 'my-jde-mode-hook)
-
-
 ;; ; The path to PowerShell
 ;; (setq exec-path (cons "C:/WINDOWS/system32/windowspowershell/v1.0" exec-path))
 
@@ -570,42 +542,27 @@
 ;; =================================================================
 ;; C# Mode Stuff
 ;; =================================================================
-(autoload 'csharp-mode "cc-mode")
+;; (require 'csharp-mode)
+;; (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 
-;; (c-add-style "myC#Style"
-;;   '("C#"
-;;   (c-basic-offset . 2)
-;;   (c-comment-only-line-offset . (0 . 0))
-;;   (c-offsets-alist . (
-;;     (c                     . c-lineup-C-comments)
-;;     (inclass		   . 0)
-;;     (namespace-open	   . +)
-;;     (namespace-close	   . +)
-;;     (innamespace	   . 0)
-;;     (class-open		   . +)
-;;     (class-close	   . 0)
-;;     (inclass		   . 0)
-;;     (defun-open		   . +)
-;;     (defun-block-intro     . 0)
-;;     (inline-open	   . ++)
-;;     (statement-block-intro . 0)
-;;     (brace-list-intro      . +)
-;;     ))
-;;   ))
+;; (Defunx my-csharp-mode-fn ()
+;;    "function that runs when csharp-mode is initialized for a buffer."
+;;    (turn-on-auto-revert-mode)
+;;    (setq indent-tabs-mode nil)
+;;    ;;...insert more code here...
+;;    ;;...including any custom key bindings you might want ...
+;;    )
+;; (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
 
- (setq my-csharp-style
- 	  '((c-auto-newline . t)
- 		(c-cleanup-list . (scope-operator empty-defun-braces defun-close-semi))
- 		(c-offsets-alist . ((arglist-close . c-lineup-arglist)
- 							(block-open . -)
- 							(substatement-open . 0)))))
+;;  (setq my-csharp-style
+;;  	  '((c-auto-newline . t)
+;;  		(c-cleanup-list . (scope-operator empty-defun-braces defun-close-semi))
+;;  		(c-offsets-alist . ((arglist-close . c-lineup-arglist)
+;;  							(block-open . -)
+;;  							(substatement-open . 0)))))
 
-(add-hook 'csharp-mode-hook 
-		  (function (lambda () 
-					  (c-add-style "my-cs-style" my-csharp-style t))))
-
-(require 'cc-mode)
-(c-initialize-cc-mode)
+;;(require 'cc-mode)
+;;(c-initialize-cc-mode)
 
 
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
