@@ -112,13 +112,18 @@
 ;; This will show the required string in the scratch buffer.
 
 (setq default-frame-alist
-      '((width . 80) 
-		(height . 45)
-		(font . "-outline-consolas-normal-r-normal-normal-14-120-96-96-c-*-iso8859-15")))
+      '((width . 100) 
+		(height . 40)
+		(font . "Consolas-16")))
+
+;; (setq default-frame-alist
+;;       '((width . 80) 
+;; 		(height . 45)
+;; 		(font . "-outline-consolas-normal-r-normal-normal-14-120-96-96-c-*-iso8859-15")))
 
 ;; Uncomment this to make a minibuffer only frame!
-;;(add-to-list 'default-frame-alist
-;;	'(minibuffer . nil))
+;; (add-to-list 'default-frame-alist
+;; 	'(minibuffer . nil))
 
 ; =================================================================
 ;; Emacs auto customize section
