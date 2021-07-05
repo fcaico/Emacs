@@ -112,9 +112,10 @@
 ;; This will show the required string in the scratch buffer.
 
 (setq default-frame-alist
-      '((width . 100) 
-		(height . 40)
-		(font . "Consolas-16")))
+       '((width . 100) 
+ 		(height . 40)
+		(font . "-*-Fira Mono for Powerline-normal-normal-normal-*-16-*-*-*-p-0-iso10646-1")))
+;; 		(font . "Consolas-16")))
 
 ;; (setq default-frame-alist
 ;;       '((width . 80) 
@@ -133,9 +134,10 @@
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-solarized-dark)
+	 (color-theme-standard)
      (set-cursor-color "red")))
 
+;;     (color-theme-solarized-dark)
 
 
 ;; =================================================================
